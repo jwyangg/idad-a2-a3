@@ -6,6 +6,8 @@ let testRange = document.getElementById("frequencySlider");
 
 const delayFeedbackSlider = document.getElementById("delayFeedbackInput");
 
+const volumeFeedbackDisplay = document.getElementById("volumeFeedback");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////// Intro Modal popup
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,13 +157,36 @@ function changeFilterQ(newFilterQ) {
 ///////// Delay Functions
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function changeDelayFeedback(newFeedbackAmt) {}
+function changeDelayFeedback(newFeedbackAmt) {
+  delay.feedback.value = newFeedbackAmt;
+}
+
+delayFeedbackSlider.addEventListener("change", (e) => {
+  let inputValue = e.target.value;
+  changeDelayFeedback(inputValue);
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////// Meter Feedback
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function findCurrentVolume() {
+  let currentVolume = meter.getValue();
+  let clampedValue = clamp(currentVolume, -80, 0);
+  let remappedValue = remapRange(clampedValue, -80, 0, 0, 100);
+  // console.log(clampedValue);
+  // console.log(remappedValue);
+  volumeFeedbackDisplay.textContent = remappedValue;
+  document.body.style.backgroundColor = `color-mix(in hsl, red, blue ${remappedValue}%)`;
+}
+
+setInterval(findCurrentVolume, 200);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////// Connections
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-testRange.addEventListener("input", (e) => {
-  let rangeValue = e.target.value;
-  changeFilterFreq(rangeValue);
-});
+// testRange.addEventListener("input", (e) => {
+//   let rangeValue = e.target.value;
+//   changeFilterFreq(rangeValue);
+// });
