@@ -23,6 +23,7 @@ let polySynth = new Tone.PolySynth(Tone.Synth, {
 let sampler = new Tone.Sampler({
   urls: {
     D2: "mel_low_d.wav",
+    C3: "four.m4a",
   },
   baseUrl: "./assets/audioSamples/",
 });
