@@ -4,6 +4,8 @@
 
 let testRange = document.getElementById("frequencySlider");
 
+const delayFeedbackSlider = document.getElementById("delayFeedbackInput");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////// Intro Modal popup
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,8 +91,8 @@ function changeDistortionAmount(newDistAmt) {
   }
 }
 
-function toggleDistortion(distortionOn){
-  if(distortionOn){
+function toggleDistortion(distortionOn) {
+  if (distortionOn) {
     distortion.wet.value = 1;
   } else {
     distortion.wet.value = 0;
@@ -109,8 +111,8 @@ function changeReverbDecay(newVerbDecayAmt) {
   reverb.set({ decay: newVerbDecayAmt });
 }
 
-function toggleReverb(verbOn){
-  if(verbOn){
+function toggleReverb(verbOn) {
+  if (verbOn) {
     reverb.wet.value = 1;
   } else {
     reverb.wet.value = 0;
@@ -148,6 +150,12 @@ function changeFilterQ(newFilterQ) {
     filter.Q.value = newFilterQ;
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////// Delay Functions
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function changeDelayFeedback(newFeedbackAmt) {}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////// Connections
